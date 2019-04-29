@@ -1,10 +1,8 @@
-class GameMatrix extends Component {
-    constructor(props) {
-        super(props);
-    }
+import React, { Component } from 'react';
 
+class GameMatrix extends Component {
     render() {
-        
+        return(<span>THIS IS WHERE THE BOARD GOES</span>)
     }
 }
 

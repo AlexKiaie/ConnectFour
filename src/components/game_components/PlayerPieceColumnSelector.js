@@ -1,10 +1,8 @@
-class PlayerPieceColumnSelector extends Component {
-    constructor(props) {
-        super(props);
-    }
+import React, { Component } from 'react';
 
+class PlayerPieceColumnSelector extends Component {
     render() {
-        
+		return(<span>MOVE PIECE LEFT OR RIGHT TO CHOOSE A COLUMN</span>);
     }
 }
 
