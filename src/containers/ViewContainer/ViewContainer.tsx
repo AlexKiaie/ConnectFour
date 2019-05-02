@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-flexbox-grid';
 
 import PlayerColorSelectionContainer from '../PlayerColorSelectionContainer';
 import GameBoardContainer from '../GameBoardContainer';
 import UserPrompt from '../../components/generic_components/UserPrompt';
+import { genColProps } from '../../utils/gridDisplayUtils';
 
 interface vcProps {
 	playerData: object,
@@ -21,7 +22,7 @@ class ViewContainer extends Component<vcProps> {
 		}
 		else {
 			return (
-				<UserPrompt 
+				<UserPrompt
 					message={this.props.gameResult} 
 					buttons={[{text: "Ok", onClickHandler: (e: any) => { this.props.resetGame() }}]} />
 			);
@@ -30,13 +31,11 @@ class ViewContainer extends Component<vcProps> {
 
 	render() {
 		return(
-			<Container>
-				<Row>
-					<Col>
-						{this.selectMainView()}
-					</Col>
-				</Row>
-			</Container>
+			<Row center="md" middle="md">
+				<Col {...genColProps(10,10,10,10,10)}>
+					{this.selectMainView()}
+				</Col>
+			</Row>
 		);
 	}
 }

@@ -1,0 +1,17 @@
+.user-prompt-wrap {
+	vertical-align: middle;
+	height: 100vh;
+}
+
+.user-prompt-frame {
+	border: 1px solid black;
+	background: cornflowerblue;
+	border-radius: 10px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.user-prompt-frame h2 {
+	text-align: center;
+	font-size: 22px;
+}
