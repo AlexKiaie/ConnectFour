@@ -1,11 +1,11 @@
 #GameMatrix {
-	height: 50vh;
+	height: 60vh;
 	background: url("../../content/board-bkgd.png");
 	background-size: 100% 100%;
 }
 
 #GameMatrix .matrix-wrap {
-	height: 50vh;
+	height: 100%;
 	z-index: -1;
 }
 

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-flexbox-grid';
 
+import 'font-awesome/css/font-awesome.min.css';
+import './GameController.css';
+
 import { PlayerData } from '../../publicInterfaces';
 import Config from '../../constants';
 import { genColProps } from '../../utils/gridDisplayUtils';
@@ -38,15 +41,19 @@ class GameController extends Component<gcProps, gcState> {
 							<span>{this.props.currentPlayer.name} - Select a column to drop your next piece</span>
 						</Col>
 					</Row>
-					<Row>
-						<button onClick={() => {this.changeColumnSelection(-1)}}>LEFT</button>
-						<button onClick={() => {this.changeColumnSelection(1)}}>RIGHT</button>
-						<button onClick={() => {this.props.processMove(this.state.selectedColumn)}}>Drop Piece</button>
-					</Row>
-					<Row>
-						<Col className="piece-preview" xsOffset={this.state.selectedColumn} {...genColProps(1,1,1,1,1)}>
-							{this.props.currentPlayer.color}
+					<Row className="btn-array">
+						<Col xsOffset={3} {...genColProps(2,2,2,2,2)}>
+							<button className="btn-left" onClick={() => {this.changeColumnSelection(-1)}} />
 						</Col>
+						<Col {...genColProps(2,2,2,2,2)}>
+							<button className="btn-right" onClick={() => {this.changeColumnSelection(1)}} />
+						</Col>
+						<Col {...genColProps(2,2,2,2,2)}>
+							<button className="btn-drop" onClick={() => {this.props.processMove(this.state.selectedColumn)}} />
+						</Col>
+					</Row>
+					<Row className="piece-preview-wrap">
+						<Col className={"piece-preview color-" + this.props.currentPlayer.color} xsOffset={this.state.selectedColumn} />
 					</Row>
 				</Col>
 			</Row>

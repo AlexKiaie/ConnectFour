@@ -1,32 +1,59 @@
-#GameController .piece-preview  {
-	width: calc(100%/7);
+#GameController .row .piece-preview  {
+	height: 55px;
+	max-width: 55px;
+	border-radius: 100px;
+	border: 1px solid black;
 }
 
-#GameController .piece-preview .col-xs-offset-0 {
-	margin-left: 0;
+#GameController .row.piece-preview-wrap {
+	margin-left: 23px;
 }
 
-#GameController .piece-preview .col-xs-offset-1 {
+#GameController .piece-preview.col-xs-offset-1 {
 	margin-left: calc(100%/7);
 }
 
-#GameController .piece-preview .col-xs-offset-2 {
+#GameController .piece-preview.col-xs-offset-2 {
 	margin-left: calc((100%/7)*2);
 }
 
-#GameController .piece-preview .col-xs-offset-3 {
+#GameController .piece-preview.col-xs-offset-3 {
 	margin-left: calc((100%/7)*3);
 }
 
-#GameController .piece-preview .col-xs-offset-4 {
+#GameController .piece-preview.col-xs-offset-4 {
 	margin-left: calc((100%/7)*4);
 }
 
-#GameController .piece-preview .col-xs-offset-5 {
+#GameController .piece-preview.col-xs-offset-5 {
 	margin-left: calc((100%/7)*5);
 }
 
-#GameController .piece-preview .col-xs-offset-6 {
+#GameController .piece-preview.col-xs-offset-6 {
 	margin-left: calc((100%/7)*6);
+}
 
+#GameController .piece-preview.color-red {
+	background-color: red;
+}
+
+#GameController .piece-preview.color-black {
+	background-color: black;
+}
+
+#GameController .row.btn-array {
+	font-family: 'FontAwesome';
+	margin: 15px 0 15px 0;
+}
+
+#GameController .row.btn-array .btn-left::before {
+	content: "\f060";
+}
+
+#GameController .row.btn-array .btn-right::before {
+	content: "\f061";
+}
+
+#GameController .row.btn-array .btn-drop::before {
+	content: "\f063";
 }
