@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
 
 import ViewContainer from './ViewContainer';
+import { resetGame } from '../../actions';
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {};
+const mapDispatchToProps = (dispatch: any, ownProps: any) => {
+  return {
+	  resetGame: () => dispatch(resetGame())
+  };
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: any, ownProps: any) => {
 	return {
 		playerColors: state.playerColors,
 		gameResult: state.result
