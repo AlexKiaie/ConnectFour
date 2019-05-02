@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: any) => {
 
 const mapStateToProps = (state: any, ownProps: any) => {
 	return {
-		playerColors: state.playerColors,
+		playerData: state.playerInfo,
 		gameResult: state.result
 	};
 };

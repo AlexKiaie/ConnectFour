@@ -1,37 +1,39 @@
 import React, { Component } from 'react';
-import Table from 'react-bootstrap/Table';
 
-import Config from '../../constants';
+import GameController from './GameController';
 import { isWinningMove, isBoardFull } from '../../utils/gameUtils';
-import { PlayerData } from '../../publicInterfaces';
+import { PlayerData, GamePlayerData } from '../../publicInterfaces';
+import GameMatrix from './GameMatrix';
 
 interface gbProps {
-	currentPlayer: PlayerData,
-	endTurnCallback: Function,
+	playerData: GamePlayerData,
 	gameState: PlayerData[][],
+	endTurnCallback: Function,
 	finishGame: Function
 }
 
 interface gbState {
-	columnSelected: number
+	boardState: PlayerData[][],
+	currentPlayerIdx: number,
+	currentPlayer: PlayerData
 }
 
 class GameBoard extends Component<gbProps, gbState> {
 	constructor(props: gbProps) {
 		super(props);
 		this.state = {
-			columnSelected: 0
-		} as gbState;
+			boardState: this.props.gameState,
+			currentPlayerIdx: 0,
+			currentPlayer: this.props.playerData.players[0],
+		};
 	}
 
-	processMove() {
-		// console.log('process move');
-		var columnToDropTo = this.state.columnSelected;
+	processMove = (columnIndex: number) => {
 		var rowOfNewPiece = -1;
 		
 		this.props.gameState.forEach((row, rowNo) => {
-			if (rowOfNewPiece < 0 && row[columnToDropTo].color === undefined) {
-				row[columnToDropTo] = Object.assign({}, this.props.currentPlayer);
+			if (rowOfNewPiece < 0 && row[columnIndex].color === undefined) {
+				row[columnIndex] = Object.assign({}, this.state.currentPlayer);
 				rowOfNewPiece = rowNo;
 			}
 		});
@@ -39,63 +41,28 @@ class GameBoard extends Component<gbProps, gbState> {
 		if (rowOfNewPiece < 0) {
 			alert("The column you selected is full, please choose again");
 		}
-		else if (isWinningMove(this.props.gameState, rowOfNewPiece, columnToDropTo)) {
-			this.props.finishGame(this.props.currentPlayer.color + " Player Wins!");
+		else if (isWinningMove(this.props.gameState, rowOfNewPiece, columnIndex)) {
+			this.props.finishGame(this.state.currentPlayer.color + " Player Wins!");
 		}
 		else if (isBoardFull(this.props.gameState)) {
 			this.props.finishGame("TIE Game!");
 		}
 		else {
-			// console.log('end turn');
 			this.props.endTurnCallback(this.props.gameState);
-		}
-	}
-
-	changeColumnSelection(delta: number) {
-		var newCol = this.state.columnSelected + delta;
-		if (newCol >= 0 && newCol <= Config.GameBoardColCount-1) {
-			this.setState({columnSelected: newCol} as gbState);
+			var nextPlayerIdx = this.state.currentPlayerIdx === this.props.playerData.players.length - 1 ? 0 : this.state.currentPlayerIdx+1;
+			this.setState({
+				boardState: this.props.gameState,
+				currentPlayerIdx: nextPlayerIdx,
+				currentPlayer: this.props.playerData.players[nextPlayerIdx]
+			});
 		}
 	}
 
     render() {
-		const { currentPlayer } = this.props;
-		var offset = this.state.columnSelected * 20;
-
-		var matrixMarkup = this.props.gameState.map((col, colIdx) => {
-			return (
-				<tr key={colIdx}>
-					{col.map((value, rowIdx) => 
-						<td key={rowIdx+""+colIdx}>
-							{value.color}
-						</td>
-					)}
-				</tr>);
-		})
-		
 		return (
 			<div>
-				<div id="gameController">
-					<span>{currentPlayer.name}({currentPlayer ? currentPlayer.color : ""}) - Select a column to drop your next piece</span>
-					<p>MOVE PIECE LEFT OR RIGHT TO CHOOSE A COLUMN</p>
-					<button onClick={() => {this.changeColumnSelection(-1)}}>LEFT</button>
-					<button onClick={() => {this.changeColumnSelection(1)}}>RIGHT</button>
-					<button onClick={() => this.processMove()}>Drop Piece</button>
-					<br />
-					<span style={{paddingLeft: offset}}>{currentPlayer.color}</span>
-				</div>
-				<div id="gameMatrix">
-					<Table bordered >
-						<tbody>
-							{matrixMarkup}
-						</tbody>
-						<thead>
-							<tr>
-								{Array(Config.GameBoardRowCount).map((value, index) => <th key={index}>{index}</th>)}
-							</tr>
-						</thead>
-					</Table>
-				</div>
+				<GameController currentPlayer={this.state.currentPlayer} processMove={this.processMove} />
+				<GameMatrix gameData={this.state.boardState} />
 			</div>
 		);
 	}

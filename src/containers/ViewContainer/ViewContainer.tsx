@@ -1,27 +1,43 @@
 import React, { Component } from 'react';
+import { Container, Col, Row } from 'react-bootstrap';
 
 import PlayerColorSelectionContainer from '../PlayerColorSelectionContainer';
 import GameBoardContainer from '../GameBoardContainer';
-import OutcomePrompt from '../../components/OutcomePrompt';
-import { resetGame } from '../../actions';
+import UserPrompt from '../../components/generic_components/UserPrompt';
 
 interface vcProps {
-	playerColors: object,
+	playerData: object,
 	gameResult: string,
 	resetGame: Function
 }
 
 class ViewContainer extends Component<vcProps> {
-	render() {
-		if (this.props.playerColors == null) {
-			return (<PlayerColorSelectionContainer />);
+	selectMainView = () => {
+		if (this.props.playerData == null) {
+			return (<PlayerColorSelectionContainer />)
 		}
 		if (this.props.gameResult == null) {
-			return (<GameBoardContainer playerColors={this.props.playerColors} />);
+			return (<GameBoardContainer />);
 		}
-		else if(this.props.playerColors != null) {
-			return (<OutcomePrompt result={this.props.gameResult} resetGame={resetGame} />);
+		else {
+			return (
+				<UserPrompt 
+					message={this.props.gameResult} 
+					buttons={[{text: "Ok", onClickHandler: (e: any) => { this.props.resetGame() }}]} />
+			);
 		}
+	}
+
+	render() {
+		return(
+			<Container>
+				<Row>
+					<Col>
+						{this.selectMainView()}
+					</Col>
+				</Row>
+			</Container>
+		);
 	}
 }
 

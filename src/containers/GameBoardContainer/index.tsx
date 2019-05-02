@@ -6,14 +6,14 @@ import { PlayerData } from '../../publicInterfaces';
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => {
   	return {
-		updateGameState: (newState: PlayerData[][]) => dispatch(updateGameState(newState)),
+		updateBoard: (newState: PlayerData[][]) => dispatch(updateGameState(newState)),
 		finishGame: (result: string) => dispatch(setMatchResults(result))
 	};
 };
 
 const mapStateToProps = (state: any, ownProps: any) => {
 	return {
-		currentPlayer: state.currentPlayer,
+		playerData: state.playerInfo,
 		gameState: state.gameState
 	};
 };

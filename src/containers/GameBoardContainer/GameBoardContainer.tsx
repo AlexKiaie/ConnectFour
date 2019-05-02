@@ -1,27 +1,26 @@
 import * as React from 'react';
 
 import GameBoard from '../../components/game_components/GameBoard';
-import { PlayerData } from '../../publicInterfaces';
+import { PlayerData, GamePlayerData } from '../../publicInterfaces';
 
 interface gbcProps {
-	updateGameState: Function,
-	currentPlayer: PlayerData
+	updateBoard: Function,
+	playerData: GamePlayerData
 	gameState: PlayerData[][],
 	finishGame: Function
 }
 
 class GameBoardContainer extends React.Component<gbcProps> {
 	componentWillReceiveProps(nextProps: any) {
-		// console.log('willreceive props');
+		console.log('board will receive props ' + nextProps);
 	}
 
 	render() {
-		// console.log('render board');
 		return (
 			<GameBoard 
 				gameState={this.props.gameState} 
-				currentPlayer={this.props.currentPlayer} 
-				endTurnCallback={this.props.updateGameState}
+				playerData={this.props.playerData} 
+				endTurnCallback={this.props.updateBoard}
 				finishGame={this.props.finishGame}
 			/>
 		);
