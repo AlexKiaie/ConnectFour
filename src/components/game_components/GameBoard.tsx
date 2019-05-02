@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Row, Col } from 'react-flexbox-grid';
 
 import GameController from './GameController';
 import { isWinningMove, isBoardFull } from '../../utils/gameUtils';
 import { PlayerData, GamePlayerData } from '../../publicInterfaces';
 import GameMatrix from './GameMatrix';
+import { genColProps } from '../../utils/gridDisplayUtils';
 
 interface gbProps {
 	playerData: GamePlayerData,
@@ -60,10 +62,12 @@ class GameBoard extends Component<gbProps, gbState> {
 
     render() {
 		return (
-			<div>
-				<GameController currentPlayer={this.state.currentPlayer} processMove={this.processMove} />
-				<GameMatrix gameData={this.state.boardState} />
-			</div>
+			<Row middle="md">
+				<Col xsOffset={3} {...genColProps(6,6,6,6,6)}>
+					<GameController currentPlayer={this.state.currentPlayer} processMove={this.processMove} />
+					<GameMatrix gameData={this.state.boardState} />
+				</Col>
+			</Row>
 		);
 	}
 }

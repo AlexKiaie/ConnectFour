@@ -1,0 +1,32 @@
+#GameController .piece-preview  {
+	width: calc(100%/7);
+}
+
+#GameController .piece-preview .col-xs-offset-0 {
+	margin-left: 0;
+}
+
+#GameController .piece-preview .col-xs-offset-1 {
+	margin-left: calc(100%/7);
+}
+
+#GameController .piece-preview .col-xs-offset-2 {
+	margin-left: calc((100%/7)*2);
+}
+
+#GameController .piece-preview .col-xs-offset-3 {
+	margin-left: calc((100%/7)*3);
+}
+
+#GameController .piece-preview .col-xs-offset-4 {
+	margin-left: calc((100%/7)*4);
+}
+
+#GameController .piece-preview .col-xs-offset-5 {
+	margin-left: calc((100%/7)*5);
+}
+
+#GameController .piece-preview .col-xs-offset-6 {
+	margin-left: calc((100%/7)*6);
+
+}

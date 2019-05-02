@@ -1,11 +1,11 @@
 .user-prompt-wrap {
 	vertical-align: middle;
-	height: 100vh;
+	height: 70vh;
 }
 
 .user-prompt-frame {
 	border: 1px solid black;
-	background: cornflowerblue;
+	background: yellow;
 	border-radius: 10px;
 	padding-top: 25px;
 	padding-bottom: 25px;
@@ -14,4 +14,12 @@
 .user-prompt-frame h2 {
 	text-align: center;
 	font-size: 22px;
+	margin-bottom: 30px;
+}
+
+.user-prompt-frame button {
+	background: none;
+	border: 2px solid black;
+	border-radius: 5px;
+	width: 100%;
 }

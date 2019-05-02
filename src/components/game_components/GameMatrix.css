@@ -1,0 +1,26 @@
+#GameMatrix {
+	height: 50vh;
+	background: url("../../content/board-bkgd.png");
+	background-size: 100% 100%;
+}
+
+#GameMatrix .matrix-wrap {
+	height: 50vh;
+	z-index: -1;
+}
+
+#GameMatrix .board-row {
+	height: calc(100%/6);
+}
+
+#GameMatrix .board-row .board-col {
+	width: calc(100%/7);
+}
+
+#GameMatrix .board-row .board-col.piece-red {
+	background-color: red;
+}
+
+#GameMatrix .board-row .board-col.piece-black {
+	background-color: black;
+}

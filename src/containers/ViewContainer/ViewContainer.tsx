@@ -31,8 +31,9 @@ class ViewContainer extends Component<vcProps> {
 
 	render() {
 		return(
-			<Row center="md" middle="md">
+			<Row center="md">
 				<Col {...genColProps(10,10,10,10,10)}>
+					<h1>Connect Four!</h1>
 					{this.selectMainView()}
 				</Col>
 			</Row>

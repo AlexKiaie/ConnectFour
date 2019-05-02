@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-flexbox-grid';
 
+import './GameMatrix.css';	
+
 import { PlayerData } from '../../publicInterfaces';
 import { genColProps } from '../../utils/gridDisplayUtils';
 
@@ -15,15 +17,14 @@ class GameMatrix extends Component<gmProps> {
 				<Row className="board-row" key={colIdx}>
 					{col.map((value, rowIdx) => 
 						<Col key={rowIdx+""+colIdx}
-							className={"board-col piece-" + value.color}
-							xs={1} sm={1} md={1} lg={1} />
+							className={"board-col piece-" + value.color}></Col>
 					)}
 				</Row>);
 		}).reverse();
 
         return(
-			<Row id="gameMatrix">
-				<Col {...genColProps()}>
+			<Row id="GameMatrix">
+				<Col className="matrix-wrap" {...genColProps()}>
 					{matrixMarkup}
 				</Col>
 			</Row>
